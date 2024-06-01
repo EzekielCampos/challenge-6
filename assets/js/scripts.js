@@ -1,5 +1,4 @@
 
-
 const searchCityButton= document.querySelector("#citi-button");
 const listCities = document.querySelector("#cities");
 const cityInput = document.querySelector("#search-city")
@@ -31,16 +30,16 @@ return cityArray;
 function findForecast(event){
     event.preventDefault()
 
+    if(!cityInput.value){
+        alert("Invalid argument.Try again")
+        return;
+    }
+
     storeValue(cityInput.value);
     console.log(cityInput.value);
     cityInput.value ="";
 
 }
-
-
-
-
-
 
 
 
