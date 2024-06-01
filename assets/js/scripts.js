@@ -1,20 +1,26 @@
 
 const searchCityButton= document.querySelector("#citi-button");
-const listCities = document.querySelector("#cities");
+const holderCities = document.querySelector("#cities");
+const citiesList = document.querySelector("#cities-list");
+
 const cityInput = document.querySelector("#search-city")
 
+const APIkey = "a982c70229a3cc2a4eb22edd33dd6ff6";
 
+
+// Stores the city name in the local storage
 function storeValue(value){
 
+    // First gets the array of cities
 let cityArray = getValue();
-
+// Pushes the parameter into the array
 cityArray.push(value);
-
+// Updates the item in local storage
 localStorage.setItem("city", JSON.stringify(cityArray));
-
 
 }
 
+// Returns the current array of citi names held in local storage
 function getValue(){
 
     let cityArray = []
@@ -26,10 +32,27 @@ return cityArray;
 
 }
 
+function printCities(){
 
+    citiesList.innerHTML = "";
+    let names = getValue();
+
+    for(let city of names){
+
+        let listItem = document.createElement("li");
+        listItem.setAttribute("class", "list-group-item list-group-item-secondary mt-2")
+        listItem.textContent = city;
+        citiesList.appendChild(listItem);
+    }
+
+}
+
+
+// function will be run when the search button is clicked
 function findForecast(event){
     event.preventDefault()
 
+    // Checks to see if the input is empty
     if(!cityInput.value){
         alert("Invalid argument.Try again")
         return;
@@ -38,6 +61,9 @@ function findForecast(event){
     storeValue(cityInput.value);
     console.log(cityInput.value);
     cityInput.value ="";
+    printCities();
+
+
 
 }
 
@@ -45,7 +71,7 @@ function findForecast(event){
 
 
 
-
+printCities();
 
 
 searchCityButton.addEventListener("click", findForecast);
