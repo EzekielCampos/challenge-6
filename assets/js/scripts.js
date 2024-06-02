@@ -65,19 +65,37 @@ function getWeatherApi(city){
 });
 }
 
+// Convert the time that the api gave us to current date format
+function convertToDate(seconds){
+
+    // Convert to milliseconds
+    let currentDate = dayjs(seconds *1000)
+    return currentDate.format("MMMM D, YYYY")
+
+}
+
 function outputCurrentReport(value){
 
 let bodyBox = document.createElement("div");
-bodyBox.setAttribute("class", "col 3 w-25 justify-content-center border border-dark ms-5")
+bodyBox.setAttribute("class", "ms-5 col-8 border border-dark inline")
 let headerEl = document.createElement("h1");
+headerEl.textContent = `${value.name}- ${convertToDate(value.dt)}`;
+
+
 let iconImg = document.createElement("img");
 iconImg.setAttribute("src", `https://openweathermap.org/img/wn/${value.weather[0].icon}@2x.png`)
 
-headerEl.textContent = `${value.name}`;
+let tempValue = document.createElement("p");
+tempValue.textContent = `Temperature: ${value.main.temp} F°`;
+let windValue = document.createElement("p");
+windValue .textContent = `Wind: ${value.wind.speed} MPH`;
+let humidityValue = document.createElement("p");
+humidityValue.textContent = `Humidity ${value.main.humidity}`
 
-bodyBox.appendChild(headerEl);
-bodyBox.appendChild(iconImg);
+
+bodyBox.append(headerEl, iconImg,tempValue,windValue,humidityValue);
 currentWeather.appendChild(bodyBox);
+console.log(value.dt)
 
 
 
@@ -86,6 +104,7 @@ currentWeather.appendChild(bodyBox);
 
 
 // function will be run when the search button is clicked
+
 function findForecast(event){
     event.preventDefault()
 
