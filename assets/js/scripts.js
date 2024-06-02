@@ -50,8 +50,24 @@ function printCities(){
 
 }
 
+
+function fiveDayForecast(city){
+
+    // Url to get the five day forcast taking latitude and longitude as query parameters
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${city.coord.lat}&lon=${city.coord.lon}&appid=${APIkey}&units=imperial`;
+    fetch(apiUrl)
+        .then(function(response){
+            console.log(`five day ${response.status}`);
+            response.json().then(function(data){
+                console.log(data);
+            })
+        })
+    }
+ 
+
 function getWeatherApi(city){
 
+    // api contains the city parameter and apik key to access specific weather data
     const apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}&units=imperial`
 
     fetch(apiUrl)
@@ -60,6 +76,7 @@ function getWeatherApi(city){
         response.json().then(function(data){
         console.log(data);      
         outputCurrentReport(data);
+        fiveDayForecast(data);
 
     })
 
@@ -122,11 +139,11 @@ function findForecast(event){
         return;
     }
      
+    // If a weather box already exist then it will be cleared before the new city search
     let box = document.querySelector("#weather-box");
     if(box){
         currentWeather.removeChild(box);
     }
-    // currentWeather.removeChild(box);
 
     storeValue(cityInput.value);
     getWeatherApi(cityInput.value)
