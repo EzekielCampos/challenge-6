@@ -3,6 +3,7 @@ const searchCityButton= document.querySelector("#citi-button");
 const holderCities = document.querySelector("#cities");
 const citiesList = document.querySelector("#cities-list");
 const currentWeather = document.querySelector("#input-area");
+const box = document.querySelector("weather-box");
 
 const cityInput = document.querySelector("#search-city")
 const APIkey = "a982c70229a3cc2a4eb22edd33dd6ff6";
@@ -40,7 +41,7 @@ function printCities(){
     for(let city of names){
 
         let listItem = document.createElement("li");
-        listItem.id = city.toLowerCase();
+        listItem.setAttribute("data-city",city.toLowerCase());
         listItem.setAttribute("class", "list-group-item list-group-item-secondary mt-2")
         listItem.textContent = city;
         citiesList.appendChild(listItem);
@@ -76,8 +77,10 @@ function convertToDate(seconds){
 
 function outputCurrentReport(value){
 
+    
+
 let bodyBox = document.createElement("div");
-bodyBox.setAttribute("class", "ms-5 col-8 border border-dark inline")
+bodyBox.id ="weather-box";
 let headerEl = document.createElement("h1");
 headerEl.textContent = `${value.name}- ${convertToDate(value.dt)}`;
 
@@ -94,10 +97,10 @@ humidityValue.textContent = `Humidity ${value.main.humidity}`
 
 
 bodyBox.append(headerEl, iconImg,tempValue,windValue,humidityValue);
+bodyBox.setAttribute("class", "ms-5 col-8 border border-dark inline")
+
 currentWeather.appendChild(bodyBox);
 console.log(value.dt)
-
-
 
 
 }
@@ -121,6 +124,10 @@ function findForecast(event){
         return;
     }
 
+    if(box){
+        box.innerHTML = "";
+
+    }
     storeValue(cityInput.value);
     getWeatherApi(cityInput.value)
     console.log(cityInput.value);
@@ -132,8 +139,17 @@ function findForecast(event){
 
 
 
-
-printCities();
-
-
 searchCityButton.addEventListener("click", findForecast);
+
+citiesList.addEventListener("click", function(event){
+    const target = event.target;
+    if(target.matches("li")){
+        let box = document.querySelector("#weather-box");
+        currentWeather.removeChild(box);
+        console.log(target.dataset.city);
+        getWeatherApi(target.dataset.city);
+       
+    }
+});
+
+
