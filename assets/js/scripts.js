@@ -2,6 +2,7 @@
 const searchCityButton= document.querySelector("#citi-button");
 const holderCities = document.querySelector("#cities");
 const citiesList = document.querySelector("#cities-list");
+const currentWeather = document.querySelector("#input-area");
 
 const cityInput = document.querySelector("#search-city")
 const APIkey = "a982c70229a3cc2a4eb22edd33dd6ff6";
@@ -50,14 +51,36 @@ function printCities(){
 
 function getWeatherApi(city){
 
-    const apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}`
+    const apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}&units=imperial`
 
     fetch(apiUrl)
     .then(function(response){
-        if(response.ok){
-            console.log(response.status);
-        }
+        console.log(response.status);
+        response.json().then(function(data){
+        console.log(data);
+        outputCurrentReport(data);
+
     })
+
+});
+}
+
+function outputCurrentReport(value){
+
+let bodyBox = document.createElement("div");
+bodyBox.setAttribute("class", "col 3 w-25 justify-content-center border border-dark ms-5")
+let headerEl = document.createElement("h1");
+let iconImg = document.createElement("img");
+iconImg.setAttribute("src", `https://openweathermap.org/img/wn/${value.weather[0].icon}@2x.png`)
+
+headerEl.textContent = `${value.name}`;
+
+bodyBox.appendChild(headerEl);
+bodyBox.appendChild(iconImg);
+currentWeather.appendChild(bodyBox);
+
+
+
 
 }
 
@@ -72,14 +95,18 @@ function findForecast(event){
         return;
     }
 
+    // Checks for repeated values
+    if(getValue().includes(cityInput.value)){
+        alert("Repeated value. Enter a new one")
+        cityInput.value ="";
+        return;
+    }
+
     storeValue(cityInput.value);
     getWeatherApi(cityInput.value)
     console.log(cityInput.value);
     cityInput.value ="";
-    printCities();
-    
-
-
+    printCities(); 
 
 }
 
