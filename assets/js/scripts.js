@@ -4,7 +4,7 @@ const holderCities = document.querySelector("#cities");
 const citiesList = document.querySelector("#cities-list");
 const currentWeather = document.querySelector("#input-area");
 let bodyBox = document.querySelector("#weather-box");
-let futureForecast = document.querySelector("#city-future-forecast");
+let futureForecast = document.querySelector("#five-forecast");
 
 const cityInput = document.querySelector("#search-city")
 const APIkey = "a982c70229a3cc2a4eb22edd33dd6ff6";
@@ -48,6 +48,7 @@ function printCities(){
         citiesList.appendChild(listItem);
 
     }
+    holderCities.setAttribute("style", "border-top: 2px solid #000;")
 
 }
 
@@ -69,25 +70,34 @@ function fiveDayForecast(city){
 
 function displayFiveDay(value){
 
+// let forcastContainer = document.createElement("div");
+// let titleContainer = document.createElement("h3");
+// titleContainer.textContent = "5 Day Forecast";
 
+for(let index = 0; index < 5; index++){
     let weatherCard = document.createElement("div");
-    weatherCard.setAttribute("class","card col-2 h-25 mt-4 ms-4");
+    weatherCard.setAttribute("class","card col-2 mt-4 ms-3");
     let cardBody = document.createElement("div");
     cardBody.setAttribute("class","card-body");
     let cardDate = document.createElement("h5");
     cardDate.setAttribute("class", "card-title");
     let cardImg = document.createElement("img");
-    cardImg.setAttribute("src", `https://openweathermap.org/img/wn/${value.list[0].weather[0].icon}@2x.png`);
+    cardImg.setAttribute("src", `https://openweathermap.org/img/wn/${value.list[index].weather[0].icon}@2x.png`);
     let tempValue = document.createElement("p");
-tempValue.textContent = `Temperature: ${value.list[0].main.temp} F°`;
+tempValue.textContent = `Temp: ${value.list[index].main.temp} F°`;
 let windValue = document.createElement("p");
-windValue .textContent = `Wind: ${value.list[0].wind.speed} MPH`;
+windValue .textContent = `Wind: ${value.list[index].wind.speed} MPH`;
 let humidityValue = document.createElement("p");
-humidityValue.textContent = `Humidity ${value.list[0].main.humidity}`;
-
+humidityValue.textContent = `Humidity ${value.list[index].main.humidity}`;
 cardBody.append(cardDate,cardImg,tempValue,windValue,humidityValue);
 weatherCard.appendChild(cardBody);
 futureForecast.appendChild(weatherCard);
+}
+    
+
+
+// forcastContainer.append(titleContainer, weatherCard);
+
 
 
 

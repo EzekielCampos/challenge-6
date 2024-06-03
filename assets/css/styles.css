@@ -7,12 +7,20 @@ header h1{
 }
 
 #citi-label{
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
     font-weight: bold;
   
 }
 
-#cities{
-    border-top: 2px solid #000;
+#citi-button:active{
+   
+    #cities{
+        border-top: 2px solid #000;
+    }
+    
+}
+
+li:hover{
+    background-color: azure;
 }
