@@ -13,13 +13,13 @@ header h1{
   
 }
 
-#citi-button:active{
+/* #citi-button:active{
    
     #cities{
         border-top: 2px solid #000;
     }
     
-}
+} */
 
 li:hover{
     background-color: azure;

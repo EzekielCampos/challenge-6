@@ -185,6 +185,12 @@ function findForecast(event){
         currentWeather.removeChild(box);
     }
 
+    let futureForecast = document.querySelector("#five-forecast");
+
+    if (futureForecast) {
+        futureForecast.innerHTML= "";
+    }
+
     storeValue(cityInput.value);
     getWeatherApi(cityInput.value)
     console.log(cityInput.value);
@@ -202,7 +208,9 @@ citiesList.addEventListener("click", function(event){
     const target = event.target;
     if(target.matches("li")){
         let box = document.querySelector("#weather-box");
+        let futureForecast = document.querySelector("#five-forecast");
         currentWeather.removeChild(box);
+        futureForecast.innerHTML = "";
         console.log(target.dataset.city);
         getWeatherApi(target.dataset.city);
        
