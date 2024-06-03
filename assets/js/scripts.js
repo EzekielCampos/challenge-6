@@ -74,6 +74,8 @@ function displayFiveDay(value){
 // let titleContainer = document.createElement("h3");
 // titleContainer.textContent = "5 Day Forecast";
 
+let dayIndex = 0;
+// Start from the second index of the array to get the next date 
 for(let index = 0; index < 5; index++){
     let weatherCard = document.createElement("div");
     weatherCard.setAttribute("class","card col-2 mt-4 ms-3");
@@ -81,14 +83,22 @@ for(let index = 0; index < 5; index++){
     cardBody.setAttribute("class","card-body");
     let cardDate = document.createElement("h5");
     cardDate.setAttribute("class", "card-title");
+    // Create a special value transverse date value to be the next day
+    let date = dayjs(value.list[dayIndex].dt * 1000);
+    // Need to increase the day index by eight because the array goes by three hour intervals
+    dayIndex+= 8;
+    date.format("MMMM D, YYYY");
+    console.log(dayIndex);
+    cardDate.textContent = date;
+    console.log(value.list[index].dt);
     let cardImg = document.createElement("img");
     cardImg.setAttribute("src", `https://openweathermap.org/img/wn/${value.list[index].weather[0].icon}@2x.png`);
     let tempValue = document.createElement("p");
-tempValue.textContent = `Temp: ${value.list[index].main.temp} F°`;
+tempValue.textContent = `Temp:${value.list[index].main.temp}F°`;
 let windValue = document.createElement("p");
-windValue .textContent = `Wind: ${value.list[index].wind.speed} MPH`;
+windValue .textContent = `Wind:${value.list[index].wind.speed}MPH`;
 let humidityValue = document.createElement("p");
-humidityValue.textContent = `Humidity ${value.list[index].main.humidity}`;
+humidityValue.textContent = `Humidity ${value.list[index].main.humidity}%`;
 cardBody.append(cardDate,cardImg,tempValue,windValue,humidityValue);
 weatherCard.appendChild(cardBody);
 futureForecast.appendChild(weatherCard);
@@ -112,7 +122,10 @@ function getWeatherApi(city){
 
     fetch(apiUrl)
     .then(function(response){
-        console.log(response.status);
+        if(response.status === 404){
+            alert("Invalid city. Try again")
+            return;
+        }
         response.json().then(function(data){
         console.log(data);      
         outputCurrentReport(data);
@@ -127,8 +140,8 @@ function getWeatherApi(city){
 function convertToDate(seconds){
 
     // Convert to milliseconds
-    let currentDate = dayjs(seconds *1000)
-    return currentDate.format("MMMM D, YYYY")
+    let currentDate = dayjs(seconds * 1000);
+    return currentDate.format("MMMM D, YYYY");
 
 }
 
@@ -159,7 +172,6 @@ console.log(value.dt)
 
 
 }
-
 
 // function will be run when the search button is clicked
 

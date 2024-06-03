@@ -13,19 +13,23 @@
     <header>
         <h1>Weatherboard</h1>
     </header>
-    <section id="main">
 
-        <div class="row" id="input-area">
-            <form id="search-form" class="col-2 mt-3 d-flex-column justify-content-center">
-                <label for="search-city" class="ms-3 mb-2" id="citi-label">Search city:</label>
-                <input type="text" class="ms-3 w-100" placeholder="City" id="search-city">
-                <button type="button" class="btn btn-primary w-100 ms-3 mt-4" id="citi-button">Search</button>            
-            </form>
-            
-        </div>
+
+<section id="main">
+<div class="container">
+    <div class="row" id="input-area">
+        <form id="search-form" class="col-2 mt-3 d-flex-column justify-content-center">
+            <label for="search-city" class="ms-3 mb-2" id="citi-label">Search city:</label>
+            <input type="text" class="ms-3 w-100" placeholder="City" id="search-city">
+            <button type="button" class="btn btn-primary w-100 ms-3 mt-4" id="citi-button">Search</button>            
+        </form>
+        
+    </div>
+
+</div>
 
 <div class="container">
-    <div class="row" id="city-future-forecast">
+    <div class="row d-flex-column justify-content-center" id="city-future-forecast">
         <div id="cities" class="col-2 mt-2">
             <ul id="cities-list" class="list-group"></ul>
         </div>
@@ -34,10 +38,7 @@
     
 </div>
 
-       
-
-
-    </section>
+</section>
     
 
 
