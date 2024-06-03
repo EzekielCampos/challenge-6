@@ -13,13 +13,9 @@ header h1{
   
 }
 
-/* #citi-button:active{
-   
-    #cities{
-        border-top: 2px solid #000;
-    }
-    
-} */
+#five-forecast p{
+    font-size: x-small;
+}
 
 li:hover{
     background-color: azure;
