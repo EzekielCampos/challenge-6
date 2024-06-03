@@ -77,7 +77,7 @@ let dayIndex = 0;
 // Start from the second index of the array to get the next date 
 for(let index = 0; index < 5; index++){
     let weatherCard = document.createElement("div");
-    weatherCard.setAttribute("class","card col-2 mt-4 ms-3");
+    weatherCard.setAttribute("class","card col-2 h-100 mt-4 ms-3");
     let cardBody = document.createElement("div");
     cardBody.setAttribute("class","card-body");
     let cardDate = document.createElement("h5");
@@ -114,7 +114,13 @@ function getWeatherApi(city){
     fetch(apiUrl)
     .then(function(response){
         if(response.status === 404){
-            console.log("failure");
+            console.log(getValue().pop);
+          let removeInvalid = getValue();
+          removeInvalid.pop();
+          localStorage.setItem("city", JSON.stringify(removeInvalid));
+          printCities();
+          alert("Invalid argument");
+          return;
         }
         response.json().then(function(data){
         console.log(data);      
