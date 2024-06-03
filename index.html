@@ -17,6 +17,7 @@
 
 <section id="main">
 <div class="container">
+    <!-- Holds the search form and dynamically created weather-box for current weather report in a row -->
     <div class="row" id="input-area">
         <form id="search-form" class="col-2 mt-3 d-flex-column justify-content-center">
             <label for="search-city" class="ms-3 mb-2" id="citi-label">Search city:</label>
@@ -31,18 +32,19 @@
 <div class="container">
     <div class="row d-flex-column justify-content-center" id="city-future-forecast">
         <div id="cities" class="col-2 mt-2">
+            <!-- This will hold names of the searched cities -->
             <ul id="cities-list" class="list-group"></ul>
         </div>
+        <!-- This will hold the dynamically created weather card for future forecast -->
         <div class= "row col-10" id="five-forecast"></div>
     </div>
     
 </div>
 
 </section>
-    
 
-
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-    <script src="./assets/js/scripts.js"></script>
+<!--CDN to day.js api -->
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+<script src="./assets/js/scripts.js"></script>
 </body>
 </html>

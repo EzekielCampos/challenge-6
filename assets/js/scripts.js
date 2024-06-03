@@ -7,7 +7,7 @@ const citiesList = document.querySelector("#cities-list");
 const currentWeather = document.querySelector("#input-area");
 // This will hold the future forecast that will be displayed
 let futureForecast = document.querySelector("#five-forecast");
-
+// This contains the users input value
 const cityInput = document.querySelector("#search-city")
 
 // Api key to be used to make a request
@@ -15,8 +15,8 @@ const APIkey = "a982c70229a3cc2a4eb22edd33dd6ff6";
 
 // Stores the city name in the local storage
 function storeValue(value){
-
-    // First gets the array of cities
+    
+// First gets the array of cities
 let cityArray = getValue();
 // Pushes the parameter into the array
 cityArray.push(value);
