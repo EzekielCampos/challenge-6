@@ -44,6 +44,10 @@ function printCities(){
     // This will return the array of city names that have been searched
     let names = getValue();
 
+    if(!names.length){
+        return;
+    }
+
     for(let city of names){
 
         let listItem = document.createElement("li");
@@ -54,6 +58,11 @@ function printCities(){
         citiesList.appendChild(listItem);
 
     }
+    const deleteButton = document.createElement("button");
+    deleteButton.setAttribute("class","mt-2 bg-danger");
+    deleteButton.setAttribute("id","delete");
+    deleteButton.textContent = "Clear History";
+    citiesList.append(deleteButton);
     // This will add a little separator between the search bar and the list of cities
     holderCities.setAttribute("style", "border-top: 2px solid #000;")
 
@@ -251,6 +260,21 @@ function displayPreviousCity(event){
         // Gets the city name from dataset attribute and makes an api call to display that city's weather information
         getWeatherApi(target.dataset.city);
        
+    }
+    // If the target is a button than the search history will be cleared from the page and from local storage
+    if(target.matches("button")){
+
+        let clearArray = getValue();
+
+        // Delete everything inside the current array
+        clearArray.splice(0, clearArray.length);
+        // Set the empty array to local storage
+        localStorage.setItem("city", JSON.stringify(clearArray));
+
+        // Reload the page so that all the forecast will be cleared
+        location.reload();
+
+
     }
 }
 
