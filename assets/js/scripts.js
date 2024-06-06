@@ -59,7 +59,7 @@ function printCities(){
 
     }
     const deleteButton = document.createElement("button");
-    deleteButton.setAttribute("class","mt-2 bg-danger w-75 ms-4");
+    deleteButton.setAttribute("class","mt-2 bg-danger w-100 ms-0");
     deleteButton.setAttribute("id","delete");
     deleteButton.textContent = "Clear History";
     citiesList.append(deleteButton);
