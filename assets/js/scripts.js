@@ -75,9 +75,7 @@ function fiveDayForecast(city){
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${city.coord.lat}&lon=${city.coord.lon}&appid=${APIkey}&units=imperial`;
     fetch(apiUrl)
         .then(function(response){
-            console.log(`five day ${response.status}`);
             response.json().then(function(data){
-                console.log(data);
                 // This will take the data from the api and display the five day future forecast
                 displayFiveDay(data);
             })
@@ -87,7 +85,9 @@ function fiveDayForecast(city){
 
 function displayFiveDay(value){
 
+//This will be the header that goes above the five day forecast
 let titleContainer = document.createElement("h3");
+// This will help space it out
 titleContainer.setAttribute("class", "ms-3 mt-4")
 titleContainer.textContent = "5 Day Forecast";
 futureForecast.appendChild(titleContainer);
@@ -98,6 +98,7 @@ let dayIndex = 0;
 for(let index = 0; index < 5; index++){
     // This element will hold the card that will be appended to the main page
     let weatherCard = document.createElement("div");
+    // These settings will help adjust the size of the cards when the screen size changes
     weatherCard.setAttribute("class","card col-lg-2 col-sm-10 mt-4 ms-3");
     // This element will hold all the content that will be included in the card
     let cardBody = document.createElement("div");
@@ -151,7 +152,6 @@ function getWeatherApi(city){
           return;
         }
         response.json().then(function(data){
-        console.log(data);   
         //The user will input a city name and the current and future forecast will be rendered   
         outputCurrentReport(data);
         fiveDayForecast(data);
@@ -239,7 +239,6 @@ function findForecast(event){
     storeValue(cityInput.value);
     // From the input it will make a request to an api and display all the weather info for that city
     getWeatherApi(cityInput.value)
-    console.log(cityInput.value);
     // Clears the input bar
     cityInput.value ="";
     // Displays all searched cities
@@ -258,7 +257,6 @@ function displayPreviousCity(event){
         // Clears all weather display
         currentWeather.removeChild(box);
         futureForecast.innerHTML = "";
-        console.log(target.dataset.city);
         // Gets the city name from dataset attribute and makes an api call to display that city's weather information
         getWeatherApi(target.dataset.city);
        
