@@ -8,6 +8,8 @@ This project is a weather board application that allows a user to search a city 
 
 This application can be utilized by any user if they are looking to check the weather for any particular city.  Each time a user searches their value will be saved and rendered to the side of the page. If they wish to check a city they already searched, they can click on the city and it will render the forecast.
 
-### Link
 
+### Link
+https://ezekielcampos.github.io/challenge-6-weather-dashboard-page/
 ### Screenshot
+![alt.text](./assets/images/weather-page-screenshot.png)
