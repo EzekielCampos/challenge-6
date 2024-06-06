@@ -12,4 +12,5 @@ This application can be utilized by any user if they are looking to check the we
 ### Link
 https://ezekielcampos.github.io/challenge-6-weather-dashboard-page/
 ### Screenshot
-![alt.text](./assets/images/weather-page-screenshot.png)
+
+![alt.text](./assets/images/weather-page.png)
