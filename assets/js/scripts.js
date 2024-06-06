@@ -87,8 +87,10 @@ function fiveDayForecast(city){
 
 function displayFiveDay(value){
 
-// let titleContainer = document.createElement("h5");
-// titleContainer.textContent = "5 Day Forecast";
+let titleContainer = document.createElement("h3");
+titleContainer.setAttribute("class", "ms-3 mt-4")
+titleContainer.textContent = "5 Day Forecast";
+futureForecast.appendChild(titleContainer);
 
 // This varible will be the actual index to transverse the next date
 let dayIndex = 0;
@@ -96,7 +98,7 @@ let dayIndex = 0;
 for(let index = 0; index < 5; index++){
     // This element will hold the card that will be appended to the main page
     let weatherCard = document.createElement("div");
-    weatherCard.setAttribute("class","card col-2 h-100 mt-4 ms-3");
+    weatherCard.setAttribute("class","card col-lg-2 col-sm-10 mt-4 ms-3");
     // This element will hold all the content that will be included in the card
     let cardBody = document.createElement("div");
     cardBody.setAttribute("class","card-body");
